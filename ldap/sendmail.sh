@@ -24,11 +24,20 @@ if ! [ -z $DEBUG ]; then
   echo " - Password:   "$password
   echo "Mail :"
 fi
-mail=$(cat template_mail.txt | sed "s/{LAST_NAME}/$last_name/g" \
-                      | sed "s/{FIRST_NAME}/$first_name/g" \
-                      | sed "s/{LOGIN}/$login/g"\
-                      | sed "s/{PASSWORD}/$password/g"
+mail=$(cat template_mail.txt | sed 's/{LAST_NAME}/'"$last_name"'/g' \
+                      | sed 's/{FIRST_NAME}/'"$first_name"'/g' \
+                      | sed 's/{LOGIN}/'"$login"'/g'\
+                      | sed 's,{PASSWORD},'"$password"',g'
 )
+
+if [ -z "$mail" ]; then
+  echo "Error while sending mail to :"$to 1>&2
+  echo "Last Name: "$last_name 1>&2
+  echo "First Name: "$first_name 1>&2
+  echo "Login: "$login 1>&2
+  echo "Password: "$password 1>&2
+  exit 1
+fi 
 if ! [ -z $DEBUG ]; then
   echo "$mail"
 fi

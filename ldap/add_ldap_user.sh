@@ -44,8 +44,8 @@ promo=$4
 login=$last_name$promo
 uid=$((last_uid+1))
 
-if [ ! -z $6 ]; then
-  login=$6
+if [ ! -z $5 ]; then
+  login=$5
 fi
 
 login=$(echo $login | tr '[:upper:]' '[:lower:]')
@@ -67,6 +67,8 @@ if ! [ -z $DEBUG ]; then
   echo " - OU         : "$ou
 fi
 
+hashed=$(echo -n $password | openssl dgst -md5 -binary | openssl enc -base64)
+
 if [ -e $filepath ]; then
   echo "The user "$login" is already present in the ldap registry. Please set a custom login with: " 1>&2
   echo $0 $first_name $last_name $email $promo $password "my_custom_login" 1>&2
@@ -85,12 +87,13 @@ sn:$last_name
 uidNumber: $uid
 gidNumber: $gid
 givenName: $first_name
-homeDirectory: /home/$login
-userPassword: $password
+homeDirectory: /areshome/$login
+userPassword: {md5}$hashed
 mail: $email
 roomNumber: $promo
 l: France
 ou: students
+loginShell: /bin/bash
 EOT
   echo "$uid" > last_uid
   ldapadd -D "cn=admin, dc=ares, dc=ensiie" -H "ldap://10.0.0.2" $auth -f $filepath
