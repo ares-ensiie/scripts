@@ -7,7 +7,7 @@ Mot de passe: {PASSWORD}
 
 Nous t'invitons a changer ton mot de passe le plus rapidement possible sur le site https://ares-ensiie.eu
 
-Si jamais tu rencontre un bug ou si tu as une idée pour améliorer les services Ares n'hésite pas a le signaler sur le bugtacker disponible a l'adresse https://bugtracker.ares-ensiie.eu ou par email à l'addresse : ares@ares-ensiie.eu
+Si jamais tu rencontres un bug ou si tu as une idée pour améliorer les services Ares n'hésite pas a le signaler sur le bugtacker disponible a l'adresse https://bugtracker.ares-ensiie.eu ou par email à l'addresse : ares@ares-ensiie.eu
 
 En te souhaitant un agréable séjour parmis nous,
 
