@@ -1,6 +1,6 @@
 #!/bin/sh
-echo "Flushing iptables rules..."
-sleep 1
+echo "Flushing iptables rule in 5 seconds (ctrl-c to stop it)..."
+sleep 5
 iptables -F
 iptables -X
 iptables -t nat -F
